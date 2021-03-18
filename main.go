@@ -11,7 +11,7 @@ func main() {
 	c := make(chan string)
 	go count("sheep", c)
 
-	channels.Infinite_for(c)
+	channels.InfiniteForCheckChanStatus(c)
 }
 
 func count(thing string, c chan string) {
@@ -19,4 +19,5 @@ func count(thing string, c chan string) {
 		c <- strconv.FormatInt(int64(i), 10) + " " + thing
 		time.Sleep(time.Millisecond * 500)
 	}
+	close(c)
 }

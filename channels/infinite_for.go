@@ -9,3 +9,13 @@ func Infinite_for(c chan string) {
 		fmt.Println(msg)
 	}
 }
+
+func InfiniteForCheckChanStatus(c chan string) {
+	for {
+		msg, open := <-c
+		if !open {
+			break
+		}
+		fmt.Println(msg)
+	}
+}
