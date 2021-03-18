@@ -19,3 +19,9 @@ func InfiniteForCheckChanStatus(c chan string) {
 		fmt.Println(msg)
 	}
 }
+
+func InfiniteForRangeChan(c chan string) {
+	for msg := range c {
+		fmt.Println(msg)
+	}
+}

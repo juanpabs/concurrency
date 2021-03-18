@@ -11,7 +11,7 @@ func main() {
 	c := make(chan string)
 	go count("sheep", c)
 
-	channels.InfiniteForCheckChanStatus(c)
+	channels.InfiniteForRangeChan(c)
 }
 
 func count(thing string, c chan string) {
