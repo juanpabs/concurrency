@@ -1,24 +1,22 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"time"
+
+	"github.com/concurrency/channels"
 )
 
 func main() {
 	c := make(chan string)
 	go count("sheep", c)
 
-	msg := <-c
-	fmt.Println(msg)
-	msg = <-c
-	fmt.Println(msg)
+	channels.Infinite_for(c)
 }
 
 func count(thing string, c chan string) {
-	for i := 1; i <= 10; i++ {
-		c <- strconv.FormatInt(int64(i), 16) + " " + thing
+	for i := 10; i <= 20; i++ {
+		c <- strconv.FormatInt(int64(i), 10) + " " + thing
 		time.Sleep(time.Millisecond * 500)
 	}
 }
