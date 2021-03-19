@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 	"time"
 
@@ -8,10 +9,17 @@ import (
 )
 
 func main() {
-	c := make(chan string)
-	go count("sheep", c)
+	c1 := channels.ChanWait("500ms")
+	c2 := channels.ChanWait("1s")
 
-	channels.InfiniteForRangeChan(c)
+	for {
+		select {
+		case msg1 := <-c1:
+			fmt.Println(msg1)
+		case msg2 := <-c2:
+			fmt.Println(msg2)
+		}
+	}
 }
 
 func count(thing string, c chan string) {
